@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>包饺子教程</title>
+  <title>How to Make Dumplings</title>
   <style>
     :root {
       --sidebar-w: 260px;
@@ -22,7 +22,7 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      font-family: 'Segoe UI', sans-serif;
       background: var(--bg);
       color: var(--text);
       display: flex;
@@ -83,32 +83,6 @@
     nav ul li a:hover .step-num {
       background: var(--accent);
       color: #fff;
-    }
-
-    /* Timeline */
-    .history-timeline {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
-      gap: 12px;
-      margin-top: 20px;
-    }
-    .ht-item {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-top: 3px solid var(--accent);
-      border-radius: 0 0 10px 10px;
-      padding: 14px;
-    }
-    .ht-year {
-      font-weight: 700;
-      font-size: .85rem;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .ht-desc {
-      font-size: .82rem;
-      color: #555;
-      line-height: 1.6;
     }
 
     .sidebar-footer {
@@ -206,7 +180,7 @@
       font-size: .88rem;
       color: #7d6608;
     }
-    .tip-box::before { content: '💡 小贴士：'; font-weight: 700; }
+    .tip-box::before { content: '💡 Tip: '; font-weight: 700; }
 
     .ingredient-grid {
       display: grid;
@@ -270,6 +244,32 @@
     .fold-card .fold-name { font-weight: 700; display: block; margin-bottom: 4px; }
     .fold-card .fold-desc { color: var(--muted); font-size: .78rem; line-height: 1.5; }
 
+    /* Timeline */
+    .history-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .ht-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 10px 10px;
+      padding: 14px;
+    }
+    .ht-year {
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .ht-desc {
+      font-size: .82rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
     /* Hamburger (mobile) */
     #menu-toggle {
       display: none;
@@ -303,194 +303,192 @@
 <aside id="sidebar">
   <div class="sidebar-header">
     <span class="emoji">🥟</span>
-    <h2>包饺子完全指南</h2>
-    <p>从零开始，手把手教你</p>
+    <h2>Dumpling Making Guide</h2>
+    <p>Step-by-step from scratch</p>
   </div>
   <nav>
     <ul>
-      <li><a href="#intro" class="active"><span class="step-num">★</span>简介</a></li>
-      <li><a href="#history"><span class="step-num">📜</span>饺子的历史</a></li>
-      <li><a href="#ingredients"><span class="step-num">1</span>准备食材</a></li>
-      <li><a href="#dough"><span class="step-num">2</span>和面</a></li>
-      <li><a href="#filling"><span class="step-num">3</span>调馅</a></li>
-      <li><a href="#wrapper"><span class="step-num">4</span>擀皮</a></li>
-      <li><a href="#wrap"><span class="step-num">5</span>包饺子</a></li>
-      <li><a href="#cook"><span class="step-num">6</span>煮饺子</a></li>
-      <li><a href="#sauce"><span class="step-num">7</span>蘸料调配</a></li>
+      <li><a href="#intro" class="active"><span class="step-num">★</span>Introduction</a></li>
+      <li><a href="#history"><span class="step-num">📜</span>History</a></li>
+      <li><a href="#ingredients"><span class="step-num">1</span>Ingredients</a></li>
+      <li><a href="#dough"><span class="step-num">2</span>Making the Dough</a></li>
+      <li><a href="#filling"><span class="step-num">3</span>Preparing the Filling</a></li>
+      <li><a href="#wrapper"><span class="step-num">4</span>Rolling the Wrappers</a></li>
+      <li><a href="#wrap"><span class="step-num">5</span>Wrapping Dumplings</a></li>
+      <li><a href="#cook"><span class="step-num">6</span>Cooking</a></li>
+      <li><a href="#sauce"><span class="step-num">7</span>Dipping Sauce</a></li>
     </ul>
   </nav>
-  <div class="sidebar-footer">✏️ 可根据口味自由调整食谱</div>
+  <div class="sidebar-footer">✏️ Feel free to adjust the recipe to your taste</div>
 </aside>
 
 <!-- Main Content -->
 <main>
   <!-- Hero -->
   <div class="hero">
-    <h1>🥟 包饺子教程</h1>
-    <p>饺子是中国传统美食，皮薄馅嫩，老少皆宜。跟着步骤一步步学，轻松在家包出美味饺子！</p>
+    <h1>🥟 How to Make Dumplings</h1>
+    <p>Dumplings are a beloved staple of Chinese cuisine — thin-skinned, juicy, and enjoyed by everyone. Follow these steps to make delicious homemade dumplings from scratch!</p>
     <div class="meta">
-      <span>⏱ 约 90 分钟</span>
-      <span>👥 4～6 人份</span>
-      <span>⭐ 适合新手</span>
+      <span>⏱ ~90 minutes</span>
+      <span>👥 Serves 4–6</span>
+      <span>⭐ Beginner Friendly</span>
     </div>
   </div>
 
-  <!-- Step 0: Intro -->
+  <!-- Intro -->
   <section class="step-section" id="intro">
-    <span class="step-badge">简介</span>
-    <h2>关于这份教程</h2>
-    <p>本教程将带你完整体验包饺子的全过程，包括和面、调馅、擀皮、包制和烹饪。建议第一次做时选择猪肉白菜馅，口味经典，成功率高。</p>
-    <p>跟着左侧导航栏逐步操作，每一步都有详细说明和小贴士，祝你包出漂亮又好吃的饺子！</p>
-    <div class="tip-box">建议提前 30 分钟将面粉和肉馅从冰箱取出，恢复室温效果更好。</div>
+    <span class="step-badge">Introduction</span>
+    <h2>About This Guide</h2>
+    <p>This tutorial walks you through the complete process of making dumplings at home — from mixing the dough and seasoning the filling, to rolling wrappers, folding, and cooking. For first-timers, we recommend the classic pork and cabbage filling: it's flavorful, forgiving, and always a crowd-pleaser.</p>
+    <p>Use the sidebar to navigate each step at your own pace. Each section includes detailed instructions and helpful tips. Enjoy the process!</p>
+    <div class="tip-box">Take the flour and meat filling out of the fridge about 30 minutes before you start — room temperature ingredients work much better.</div>
   </section>
 
   <!-- History -->
   <section class="step-section" id="history">
-    <span class="step-badge">历史背景</span>
-    <h2>📜 饺子的历史</h2>
-    <p>饺子是中国最古老的传统食物之一，距今已有超过 <strong>1800 年</strong>的历史。相传东汉末年，名医张仲景在冬至时节将羊肉与驱寒药材包入面皮中，煮熟后分发给冻伤耳朵的百姓，这便是饺子最早的雏形——因形似耳朵，古时也称"娇耳"。</p>
-    <p>到了唐宋时期，饺子逐渐从药食演变为日常美食，并在民间广泛流传。明清以后，饺子成为北方家庭过年必备的节日食品，"年三十包饺子、大年初一吃饺子"的习俗延续至今。</p>
-    <p>在中国北方，饺子象征着<strong>团圆、财富与好运</strong>。其半月形外观被认为酷似古代金元宝，寓意招财进宝；春节时有些家庭还会在馅料中包入一枚硬币，吃到的人被认为来年会有好运。</p>
-    <div class="tip-box">冬至吃饺子的习俗在北方尤为盛行，民间有"冬至不端饺子碗，冻掉耳朵没人管"的俗语，正是源自张仲景的传说。</div>
+    <span class="step-badge">History</span>
+    <h2>📜 The History of Dumplings</h2>
+    <p>Dumplings are one of China's oldest traditional foods, with a history spanning over <strong>1,800 years</strong>. Legend has it that during the late Eastern Han Dynasty, the renowned physician Zhang Zhongjing wrapped lamb and medicinal herbs in thin dough and boiled them to treat villagers suffering from frostbitten ears during winter. These early dumplings were called <em>"Jiao Er"</em> (娇耳), meaning "tender ears," for their distinctive ear-like shape.</p>
+    <p>By the Tang and Song dynasties, dumplings had evolved from medicinal food into an everyday staple, spreading widely among common people. During the Ming and Qing dynasties, they became an essential dish for major holidays — especially the Lunar New Year — a tradition that continues to this day.</p>
+    <p>In northern China, dumplings symbolize <strong>reunion, wealth, and good fortune</strong>. Their crescent shape resembles ancient gold ingots, representing prosperity. Some families even tuck a coin inside one dumpling — whoever finds it is said to enjoy good luck in the coming year.</p>
+    <div class="tip-box">The tradition of eating dumplings on the Winter Solstice is especially strong in northern China. A popular saying goes: "If you don't eat dumplings on the Winter Solstice, your ears will freeze off!" — a nod to Zhang Zhongjing's legendary remedy.</div>
 
     <div class="history-timeline">
       <div class="ht-item">
-        <div class="ht-year">东汉末年</div>
-        <div class="ht-desc">张仲景创制"娇耳"，用面皮包裹药材驱寒，饺子雏形诞生。</div>
+        <div class="ht-year">Late Eastern Han</div>
+        <div class="ht-desc">Zhang Zhongjing creates "Jiao Er" — dough-wrapped herbal medicine — marking the origin of dumplings.</div>
       </div>
       <div class="ht-item">
-        <div class="ht-year">唐宋时期</div>
-        <div class="ht-desc">饺子从药食演变为日常面食，逐渐出现在普通百姓的餐桌上。</div>
+        <div class="ht-year">Tang & Song</div>
+        <div class="ht-desc">Dumplings transition from medicinal food to everyday cuisine and appear on ordinary dinner tables.</div>
       </div>
       <div class="ht-item">
-        <div class="ht-year">明清时期</div>
-        <div class="ht-desc">饺子成为春节、冬至等重要节日的必备食品，习俗延续至今。</div>
+        <div class="ht-year">Ming & Qing</div>
+        <div class="ht-desc">Dumplings become a must-have dish for the Lunar New Year and Winter Solstice celebrations.</div>
       </div>
       <div class="ht-item">
-        <div class="ht-year">现代</div>
-        <div class="ht-desc">饺子走向世界，成为代表中国饮食文化的标志性美食之一。</div>
+        <div class="ht-year">Modern Day</div>
+        <div class="ht-desc">Dumplings go global, becoming one of the most iconic symbols of Chinese culinary culture worldwide.</div>
       </div>
     </div>
   </section>
 
   <!-- Step 1: Ingredients -->
   <section class="step-section" id="ingredients">
-    <span class="step-badge">步骤 1</span>
-    <h2>准备食材</h2>
-    <p>以下食材可制作约 50 个饺子：</p>
+    <span class="step-badge">Step 1</span>
+    <h2>Ingredients</h2>
+    <p>The following ingredients make approximately 50 dumplings:</p>
     <div class="ingredient-grid">
-      <div class="ingredient-card"><span class="ic-emoji">🌾</span><span class="ic-name">中筋面粉</span><span class="ic-qty">300g</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">💧</span><span class="ic-name">温水</span><span class="ic-qty">150ml</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">🥩</span><span class="ic-name">猪肉末</span><span class="ic-qty">300g</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">🥬</span><span class="ic-name">白菜</span><span class="ic-qty">200g</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">🧅</span><span class="ic-name">葱姜</span><span class="ic-qty">适量</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">🫙</span><span class="ic-name">生抽</span><span class="ic-qty">2 汤匙</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">🫙</span><span class="ic-name">芝麻油</span><span class="ic-qty">1 茶匙</span></div>
-      <div class="ingredient-card"><span class="ic-emoji">🧂</span><span class="ic-name">盐</span><span class="ic-qty">适量</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🌾</span><span class="ic-name">All-Purpose Flour</span><span class="ic-qty">300g</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">💧</span><span class="ic-name">Warm Water</span><span class="ic-qty">150ml</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🥩</span><span class="ic-name">Ground Pork</span><span class="ic-qty">300g</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🥬</span><span class="ic-name">Napa Cabbage</span><span class="ic-qty">200g</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🧅</span><span class="ic-name">Scallion & Ginger</span><span class="ic-qty">to taste</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🫙</span><span class="ic-name">Soy Sauce</span><span class="ic-qty">2 tbsp</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🫙</span><span class="ic-name">Sesame Oil</span><span class="ic-qty">1 tsp</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🧂</span><span class="ic-name">Salt</span><span class="ic-qty">to taste</span></div>
     </div>
   </section>
 
   <!-- Step 2: Dough -->
   <section class="step-section" id="dough">
-    <span class="step-badge">步骤 2</span>
-    <h2>和面</h2>
-    <p>饺子皮的好坏关键在于和面，面团要软硬适中，充分醒发。</p>
+    <span class="step-badge">Step 2</span>
+    <h2>Making the Dough</h2>
+    <p>The quality of the wrapper starts with good dough — it should be smooth, pliable, and well-rested.</p>
     <ol class="steps-list">
-      <li>将 300g 中筋面粉倒入大碗，中间挖一个小坑。</li>
-      <li>缓慢倒入约 150ml 温水（约 40°C），边倒边用筷子搅拌成絮状。</li>
-      <li>用手将面絮揉合成团，揉至表面光滑（约 10 分钟）。</li>
-      <li>盖上保鲜膜，室温静置醒面 30 分钟。</li>
+      <li>Pour 300g of all-purpose flour into a large bowl and make a well in the center.</li>
+      <li>Slowly pour in about 150ml of warm water (~40°C / 104°F), stirring with chopsticks until shaggy clumps form.</li>
+      <li>Knead by hand until the dough becomes smooth and elastic, about 10 minutes.</li>
+      <li>Cover with plastic wrap and let the dough rest at room temperature for 30 minutes.</li>
     </ol>
-    <div class="tip-box">判断面团是否合格：用手指按压后能缓慢回弹，即为软硬适中。</div>
+    <div class="tip-box">To test if the dough is ready: press a finger into it — it should spring back slowly. This means it's the right consistency.</div>
   </section>
 
   <!-- Step 3: Filling -->
   <section class="step-section" id="filling">
-    <span class="step-badge">步骤 3</span>
-    <h2>调馅</h2>
-    <p>鲜美的肉馅是饺子好吃的核心，关键在于"打水"让肉馅更嫩滑。</p>
+    <span class="step-badge">Step 3</span>
+    <h2>Preparing the Filling</h2>
+    <p>A flavorful, juicy filling is the heart of a great dumpling. The key technique is "adding water" to keep the meat tender.</p>
     <ol class="steps-list">
-      <li>白菜切碎后加少许盐腌 10 分钟，挤干多余水分，防止馅料出水。</li>
-      <li>猪肉末加入葱姜末、生抽、老抽少许、盐、白胡椒粉搅拌均匀。</li>
-      <li>分 3 次加入葱姜水（或清水），每次顺同一方向搅拌至肉馅"上劲"吸水。</li>
-      <li>加入挤干的白菜、芝麻油，轻轻拌匀即可。</li>
+      <li>Finely chop the cabbage, toss with a pinch of salt, and let sit for 10 minutes. Squeeze out the excess moisture to prevent a watery filling.</li>
+      <li>Mix ground pork with minced scallion and ginger, soy sauce, a splash of dark soy sauce, salt, and white pepper.</li>
+      <li>Add scallion-ginger water (or plain water) in 3 small additions, stirring in the same direction each time until the mixture becomes sticky and holds together.</li>
+      <li>Fold in the drained cabbage and sesame oil, and mix gently until just combined.</li>
     </ol>
-    <div class="tip-box">顺同一方向搅拌是关键！肉馅搅到有黏性、能"挂"在筷子上即可停止。</div>
+    <div class="tip-box">Always stir in one direction — this is key! The filling is ready when it becomes sticky and clings to the chopsticks.</div>
   </section>
 
   <!-- Step 4: Wrapper -->
   <section class="step-section" id="wrapper">
-    <span class="step-badge">步骤 4</span>
-    <h2>擀皮</h2>
-    <p>饺子皮要求中间稍厚、边缘稍薄，这样包好后不易破皮。</p>
+    <span class="step-badge">Step 4</span>
+    <h2>Rolling the Wrappers</h2>
+    <p>The ideal wrapper is slightly thicker in the center and thinner at the edges — this prevents tearing when folding.</p>
     <ol class="steps-list">
-      <li>醒好的面团搓成长条，切成约 10g 一个的小剂子（大拇指大小）。</li>
-      <li>剂子压扁，用擀面杖从中心向边缘推擀，每擀一下转动面皮一点。</li>
-      <li>擀成直径约 8～9cm、边缘薄中间厚的圆形面皮即可。</li>
+      <li>Roll the rested dough into a long log and cut into small pieces, about 10g each (roughly thumb-sized).</li>
+      <li>Flatten each piece, then roll from the center outward with a rolling pin, rotating the dough slightly after each roll.</li>
+      <li>Aim for a round wrapper about 8–9cm (3–3.5 inches) in diameter, thinner at the edges and thicker in the middle.</li>
     </ol>
-    <div class="tip-box">在面板和剂子上撒少许干粉防粘。擀皮时要"转圈推"而不是来回擀，保持圆形。</div>
+    <div class="tip-box">Dust the work surface and dough pieces lightly with flour to prevent sticking. Roll in a rotating motion — not back and forth — to keep the shape round.</div>
   </section>
 
   <!-- Step 5: Wrapping -->
   <section class="step-section" id="wrap">
-    <span class="step-badge">步骤 5</span>
-    <h2>包饺子</h2>
-    <p>包饺子的手法有很多种，以下是三种常见折法：</p>
+    <span class="step-badge">Step 5</span>
+    <h2>Wrapping Dumplings</h2>
+    <p>There are many ways to fold a dumpling. Here are three popular styles:</p>
     <div class="fold-gallery">
       <div class="fold-card">
         <span class="fold-emoji">🤏</span>
-        <span class="fold-name">经典月牙形</span>
-        <span class="fold-desc">馅放中央，对折后从中间开始向两端捏褶，共 5～7 个褶。</span>
+        <span class="fold-name">Classic Crescent</span>
+        <span class="fold-desc">Place filling in the center, fold in half, and pleat from the middle outward — 5 to 7 folds per side.</span>
       </div>
       <div class="fold-card">
         <span class="fold-emoji">👌</span>
-        <span class="fold-name">元宝形</span>
-        <span class="fold-desc">月牙形折好后，将两端捏在一起围成环状，形如元宝。</span>
+        <span class="fold-name">Gold Ingot</span>
+        <span class="fold-desc">Make the crescent shape first, then bring the two ends together and pinch to form a ring — like a traditional gold ingot.</span>
       </div>
       <div class="fold-card">
         <span class="fold-emoji">✌️</span>
-        <span class="fold-name">简单对折</span>
-        <span class="fold-desc">馅放中央，直接对折捏紧边缘，适合新手，简单快速。</span>
+        <span class="fold-name">Simple Fold</span>
+        <span class="fold-desc">Place filling in the center, fold in half, and press the edges firmly to seal. Quick and easy — perfect for beginners.</span>
       </div>
     </div>
-    <div class="tip-box">馅料不要放太多，约一茶匙即可，边缘留出约 1cm 的封口空间。捏紧边缘防止煮时破皮。</div>
+    <div class="tip-box">Don't overfill — about one teaspoon of filling is enough. Leave about 1cm of edge around the filling for a tight seal. Press firmly so they don't burst while cooking.</div>
   </section>
 
   <!-- Step 6: Cooking -->
   <section class="step-section" id="cook">
-    <span class="step-badge">步骤 6</span>
-    <h2>煮饺子</h2>
-    <p>煮饺子讲究"三滚三点水"，这样饺子皮熟而不烂、馅料充分熟透。</p>
+    <span class="step-badge">Step 6</span>
+    <h2>Cooking the Dumplings</h2>
+    <p>The classic boiling method uses the "three boils" technique — adding cold water three times — so the wrappers cook through without bursting.</p>
     <ol class="steps-list">
-      <li>锅中加足量冷水，大火烧开后加少许盐（防止粘连）。</li>
-      <li>水开后下饺子，用木铲轻轻推动防止粘底。</li>
-      <li>水再次沸腾后，加入半碗冷水（"点水"），重复 3 次。</li>
-      <li>第三次点水后水再次沸腾，饺子浮起且鼓起即可捞出。</li>
+      <li>Bring a large pot of water to a boil over high heat. Add a pinch of salt to help prevent sticking.</li>
+      <li>Gently slide the dumplings in and stir slowly with a wooden spoon to keep them from sticking to the bottom.</li>
+      <li>When the water returns to a boil, add half a cup of cold water. Repeat this step 3 times total.</li>
+      <li>After the third addition, once the water boils again and the dumplings are floating and puffed up, they're ready to serve.</li>
     </ol>
-    <div class="tip-box">全程保持中大火，"三点水"是防止皮破的关键。捞出后可淋少许芝麻油防粘。</div>
+    <div class="tip-box">Keep the heat on medium-high throughout. The "three cold water additions" prevent the skins from breaking. A drizzle of sesame oil after draining keeps them from sticking together.</div>
   </section>
 
   <!-- Step 7: Sauce -->
   <section class="step-section" id="sauce">
-    <span class="step-badge">步骤 7</span>
-    <h2>蘸料调配</h2>
-    <p>一碗好蘸料能让饺子更加美味，以下是经典配方：</p>
+    <span class="step-badge">Step 7</span>
+    <h2>Dipping Sauce</h2>
+    <p>A great dipping sauce brings everything together. Here are three classic combinations:</p>
     <ol class="steps-list">
-      <li><strong>基础款：</strong>生抽 2 汤匙 + 米醋 1 汤匙 + 少许辣椒油，简单直接。</li>
-      <li><strong>蒜香款：</strong>在基础款中加入 2 瓣蒜末，香气更浓郁。</li>
-      <li><strong>芝麻款：</strong>生抽 + 醋 + 芝麻酱 1 茶匙 + 少许糖，口感醇厚。</li>
+      <li><strong>Classic:</strong> 2 tbsp soy sauce + 1 tbsp rice vinegar + a drizzle of chili oil. Simple and satisfying.</li>
+      <li><strong>Garlic:</strong> Add 2 cloves of minced garlic to the classic sauce for a bold, aromatic kick.</li>
+      <li><strong>Sesame:</strong> Soy sauce + vinegar + 1 tsp sesame paste + a pinch of sugar. Rich and nutty.</li>
     </ol>
-    <div class="tip-box">醋的比例可按个人喜好调整。北方人偏爱生抽多醋少，南方人则喜欢多醋少辣。</div>
+    <div class="tip-box">Adjust the vinegar ratio to your preference. Some people love a tangier sauce; others prefer it more savory. There's no wrong answer!</div>
   </section>
 </main>
 
 <script>
-  // Sidebar toggle (mobile)
   function toggleSidebar() {
     document.getElementById('sidebar').classList.toggle('open');
   }
 
-  // Active nav highlight on scroll
   const sections = document.querySelectorAll('.step-section');
   const navLinks = document.querySelectorAll('nav a');
 
@@ -507,7 +505,6 @@
 
   sections.forEach(s => observer.observe(s));
 
-  // Smooth scroll
   navLinks.forEach(a => {
     a.addEventListener('click', e => {
       e.preventDefault();
