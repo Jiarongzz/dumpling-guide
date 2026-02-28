@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>包饺子教程</title>
+  <style>
+    :root {
+      --sidebar-w: 260px;
+      --accent: #c0392b;
+      --accent-light: #f9eaea;
+      --text: #2c2c2c;
+      --muted: #777;
+      --border: #e8e8e8;
+      --bg: #fafaf8;
+      --card: #ffffff;
+      --sidebar-bg: #1e1e1e;
+      --sidebar-text: #f0ece4;
+      --sidebar-hover: #c0392b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ── */
+    #sidebar {
+      width: var(--sidebar-w);
+      background: var(--sidebar-bg);
+      color: var(--sidebar-text);
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      z-index: 100;
+      transition: transform .3s ease;
+    }
+
+    .sidebar-header {
+      padding: 28px 20px 20px;
+      border-bottom: 1px solid #333;
+    }
+    .sidebar-header .emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
+    .sidebar-header h2 { font-size: 1.1rem; font-weight: 700; color: #fff; }
+    .sidebar-header p  { font-size: .78rem; color: #aaa; margin-top: 4px; }
+
+    nav ul { list-style: none; padding: 12px 0; }
+    nav ul li a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 20px;
+      color: #ccc;
+      text-decoration: none;
+      font-size: .9rem;
+      transition: background .2s, color .2s;
+      border-left: 3px solid transparent;
+    }
+    nav ul li a:hover,
+    nav ul li a.active {
+      background: rgba(192,57,43,.15);
+      color: #fff;
+      border-left-color: var(--accent);
+    }
+    nav ul li a .step-num {
+      background: #333;
+      color: #aaa;
+      font-size: .72rem;
+      font-weight: 700;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    nav ul li a.active .step-num,
+    nav ul li a:hover .step-num {
+      background: var(--accent);
+      color: #fff;
+    }
+
+    /* Timeline */
+    .history-timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .ht-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent);
+      border-radius: 0 0 10px 10px;
+      padding: 14px;
+    }
+    .ht-year {
+      font-weight: 700;
+      font-size: .85rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .ht-desc {
+      font-size: .82rem;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      padding: 16px 20px;
+      font-size: .75rem;
+      color: #555;
+      border-top: 1px solid #333;
+    }
+
+    /* ── Main ── */
+    main {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      padding: 40px 48px;
+      max-width: 860px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #c0392b 0%, #922b21 100%);
+      color: #fff;
+      border-radius: 16px;
+      padding: 40px;
+      margin-bottom: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '🥟';
+      position: absolute;
+      right: 32px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 5rem;
+      opacity: .35;
+    }
+    .hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 10px; }
+    .hero p  { font-size: 1rem; opacity: .9; max-width: 480px; line-height: 1.6; }
+    .hero .meta {
+      display: flex; gap: 24px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .hero .meta span {
+      background: rgba(255,255,255,.18);
+      padding: 5px 14px;
+      border-radius: 20px;
+      font-size: .82rem;
+    }
+
+    /* Step sections */
+    .step-section {
+      background: var(--card);
+      border-radius: 14px;
+      padding: 32px 36px;
+      margin-bottom: 32px;
+      border: 1px solid var(--border);
+      scroll-margin-top: 30px;
+      transition: box-shadow .2s;
+    }
+    .step-section:hover { box-shadow: 0 4px 24px rgba(0,0,0,.07); }
+
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-light);
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+
+    .step-section h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      color: #1a1a1a;
+    }
+
+    .step-section p {
+      color: #444;
+      line-height: 1.8;
+      font-size: .95rem;
+      margin-bottom: 14px;
+    }
+
+    .tip-box {
+      background: #fffbea;
+      border-left: 4px solid #f39c12;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      margin-top: 14px;
+      font-size: .88rem;
+      color: #7d6608;
+    }
+    .tip-box::before { content: '💡 小贴士：'; font-weight: 700; }
+
+    .ingredient-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .ingredient-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+      font-size: .85rem;
+    }
+    .ingredient-card .ic-emoji { font-size: 1.6rem; display: block; margin-bottom: 6px; }
+    .ingredient-card .ic-name { font-weight: 600; display: block; }
+    .ingredient-card .ic-qty  { color: var(--muted); font-size: .78rem; }
+
+    .steps-list { counter-reset: substep; margin-top: 16px; }
+    .steps-list li {
+      counter-increment: substep;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: .92rem;
+      color: #444;
+      line-height: 1.7;
+    }
+    .steps-list li:last-child { border-bottom: none; }
+    .steps-list li::before {
+      content: counter(substep);
+      background: var(--accent);
+      color: #fff;
+      font-size: .75rem;
+      font-weight: 700;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .fold-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 16px;
+    }
+    .fold-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 12px;
+      text-align: center;
+      font-size: .82rem;
+    }
+    .fold-card .fold-emoji { font-size: 2rem; display: block; margin-bottom: 8px; }
+    .fold-card .fold-name { font-weight: 700; display: block; margin-bottom: 4px; }
+    .fold-card .fold-desc { color: var(--muted); font-size: .78rem; line-height: 1.5; }
+
+    /* Hamburger (mobile) */
+    #menu-toggle {
+      display: none;
+      position: fixed;
+      top: 14px; left: 14px;
+      z-index: 200;
+      background: var(--accent);
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 720px) {
+      #menu-toggle { display: flex; align-items: center; justify-content: center; }
+      #sidebar { transform: translateX(-100%); }
+      #sidebar.open { transform: translateX(0); }
+      main { margin-left: 0; padding: 64px 20px 40px; }
+      .fold-gallery { grid-template-columns: repeat(2, 1fr); }
+      .hero::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<button id="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+<!-- Sidebar -->
+<aside id="sidebar">
+  <div class="sidebar-header">
+    <span class="emoji">🥟</span>
+    <h2>包饺子完全指南</h2>
+    <p>从零开始，手把手教你</p>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#intro" class="active"><span class="step-num">★</span>简介</a></li>
+      <li><a href="#history"><span class="step-num">📜</span>饺子的历史</a></li>
+      <li><a href="#ingredients"><span class="step-num">1</span>准备食材</a></li>
+      <li><a href="#dough"><span class="step-num">2</span>和面</a></li>
+      <li><a href="#filling"><span class="step-num">3</span>调馅</a></li>
+      <li><a href="#wrapper"><span class="step-num">4</span>擀皮</a></li>
+      <li><a href="#wrap"><span class="step-num">5</span>包饺子</a></li>
+      <li><a href="#cook"><span class="step-num">6</span>煮饺子</a></li>
+      <li><a href="#sauce"><span class="step-num">7</span>蘸料调配</a></li>
+    </ul>
+  </nav>
+  <div class="sidebar-footer">✏️ 可根据口味自由调整食谱</div>
+</aside>
+
+<!-- Main Content -->
+<main>
+  <!-- Hero -->
+  <div class="hero">
+    <h1>🥟 包饺子教程</h1>
+    <p>饺子是中国传统美食，皮薄馅嫩，老少皆宜。跟着步骤一步步学，轻松在家包出美味饺子！</p>
+    <div class="meta">
+      <span>⏱ 约 90 分钟</span>
+      <span>👥 4～6 人份</span>
+      <span>⭐ 适合新手</span>
+    </div>
+  </div>
+
+  <!-- Step 0: Intro -->
+  <section class="step-section" id="intro">
+    <span class="step-badge">简介</span>
+    <h2>关于这份教程</h2>
+    <p>本教程将带你完整体验包饺子的全过程，包括和面、调馅、擀皮、包制和烹饪。建议第一次做时选择猪肉白菜馅，口味经典，成功率高。</p>
+    <p>跟着左侧导航栏逐步操作，每一步都有详细说明和小贴士，祝你包出漂亮又好吃的饺子！</p>
+    <div class="tip-box">建议提前 30 分钟将面粉和肉馅从冰箱取出，恢复室温效果更好。</div>
+  </section>
+
+  <!-- History -->
+  <section class="step-section" id="history">
+    <span class="step-badge">历史背景</span>
+    <h2>📜 饺子的历史</h2>
+    <p>饺子是中国最古老的传统食物之一，距今已有超过 <strong>1800 年</strong>的历史。相传东汉末年，名医张仲景在冬至时节将羊肉与驱寒药材包入面皮中，煮熟后分发给冻伤耳朵的百姓，这便是饺子最早的雏形——因形似耳朵，古时也称"娇耳"。</p>
+    <p>到了唐宋时期，饺子逐渐从药食演变为日常美食，并在民间广泛流传。明清以后，饺子成为北方家庭过年必备的节日食品，"年三十包饺子、大年初一吃饺子"的习俗延续至今。</p>
+    <p>在中国北方，饺子象征着<strong>团圆、财富与好运</strong>。其半月形外观被认为酷似古代金元宝，寓意招财进宝；春节时有些家庭还会在馅料中包入一枚硬币，吃到的人被认为来年会有好运。</p>
+    <div class="tip-box">冬至吃饺子的习俗在北方尤为盛行，民间有"冬至不端饺子碗，冻掉耳朵没人管"的俗语，正是源自张仲景的传说。</div>
+
+    <div class="history-timeline">
+      <div class="ht-item">
+        <div class="ht-year">东汉末年</div>
+        <div class="ht-desc">张仲景创制"娇耳"，用面皮包裹药材驱寒，饺子雏形诞生。</div>
+      </div>
+      <div class="ht-item">
+        <div class="ht-year">唐宋时期</div>
+        <div class="ht-desc">饺子从药食演变为日常面食，逐渐出现在普通百姓的餐桌上。</div>
+      </div>
+      <div class="ht-item">
+        <div class="ht-year">明清时期</div>
+        <div class="ht-desc">饺子成为春节、冬至等重要节日的必备食品，习俗延续至今。</div>
+      </div>
+      <div class="ht-item">
+        <div class="ht-year">现代</div>
+        <div class="ht-desc">饺子走向世界，成为代表中国饮食文化的标志性美食之一。</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Step 1: Ingredients -->
+  <section class="step-section" id="ingredients">
+    <span class="step-badge">步骤 1</span>
+    <h2>准备食材</h2>
+    <p>以下食材可制作约 50 个饺子：</p>
+    <div class="ingredient-grid">
+      <div class="ingredient-card"><span class="ic-emoji">🌾</span><span class="ic-name">中筋面粉</span><span class="ic-qty">300g</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">💧</span><span class="ic-name">温水</span><span class="ic-qty">150ml</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🥩</span><span class="ic-name">猪肉末</span><span class="ic-qty">300g</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🥬</span><span class="ic-name">白菜</span><span class="ic-qty">200g</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🧅</span><span class="ic-name">葱姜</span><span class="ic-qty">适量</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🫙</span><span class="ic-name">生抽</span><span class="ic-qty">2 汤匙</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🫙</span><span class="ic-name">芝麻油</span><span class="ic-qty">1 茶匙</span></div>
+      <div class="ingredient-card"><span class="ic-emoji">🧂</span><span class="ic-name">盐</span><span class="ic-qty">适量</span></div>
+    </div>
+  </section>
+
+  <!-- Step 2: Dough -->
+  <section class="step-section" id="dough">
+    <span class="step-badge">步骤 2</span>
+    <h2>和面</h2>
+    <p>饺子皮的好坏关键在于和面，面团要软硬适中，充分醒发。</p>
+    <ol class="steps-list">
+      <li>将 300g 中筋面粉倒入大碗，中间挖一个小坑。</li>
+      <li>缓慢倒入约 150ml 温水（约 40°C），边倒边用筷子搅拌成絮状。</li>
+      <li>用手将面絮揉合成团，揉至表面光滑（约 10 分钟）。</li>
+      <li>盖上保鲜膜，室温静置醒面 30 分钟。</li>
+    </ol>
+    <div class="tip-box">判断面团是否合格：用手指按压后能缓慢回弹，即为软硬适中。</div>
+  </section>
+
+  <!-- Step 3: Filling -->
+  <section class="step-section" id="filling">
+    <span class="step-badge">步骤 3</span>
+    <h2>调馅</h2>
+    <p>鲜美的肉馅是饺子好吃的核心，关键在于"打水"让肉馅更嫩滑。</p>
+    <ol class="steps-list">
+      <li>白菜切碎后加少许盐腌 10 分钟，挤干多余水分，防止馅料出水。</li>
+      <li>猪肉末加入葱姜末、生抽、老抽少许、盐、白胡椒粉搅拌均匀。</li>
+      <li>分 3 次加入葱姜水（或清水），每次顺同一方向搅拌至肉馅"上劲"吸水。</li>
+      <li>加入挤干的白菜、芝麻油，轻轻拌匀即可。</li>
+    </ol>
+    <div class="tip-box">顺同一方向搅拌是关键！肉馅搅到有黏性、能"挂"在筷子上即可停止。</div>
+  </section>
+
+  <!-- Step 4: Wrapper -->
+  <section class="step-section" id="wrapper">
+    <span class="step-badge">步骤 4</span>
+    <h2>擀皮</h2>
+    <p>饺子皮要求中间稍厚、边缘稍薄，这样包好后不易破皮。</p>
+    <ol class="steps-list">
+      <li>醒好的面团搓成长条，切成约 10g 一个的小剂子（大拇指大小）。</li>
+      <li>剂子压扁，用擀面杖从中心向边缘推擀，每擀一下转动面皮一点。</li>
+      <li>擀成直径约 8～9cm、边缘薄中间厚的圆形面皮即可。</li>
+    </ol>
+    <div class="tip-box">在面板和剂子上撒少许干粉防粘。擀皮时要"转圈推"而不是来回擀，保持圆形。</div>
+  </section>
+
+  <!-- Step 5: Wrapping -->
+  <section class="step-section" id="wrap">
+    <span class="step-badge">步骤 5</span>
+    <h2>包饺子</h2>
+    <p>包饺子的手法有很多种，以下是三种常见折法：</p>
+    <div class="fold-gallery">
+      <div class="fold-card">
+        <span class="fold-emoji">🤏</span>
+        <span class="fold-name">经典月牙形</span>
+        <span class="fold-desc">馅放中央，对折后从中间开始向两端捏褶，共 5～7 个褶。</span>
+      </div>
+      <div class="fold-card">
+        <span class="fold-emoji">👌</span>
+        <span class="fold-name">元宝形</span>
+        <span class="fold-desc">月牙形折好后，将两端捏在一起围成环状，形如元宝。</span>
+      </div>
+      <div class="fold-card">
+        <span class="fold-emoji">✌️</span>
+        <span class="fold-name">简单对折</span>
+        <span class="fold-desc">馅放中央，直接对折捏紧边缘，适合新手，简单快速。</span>
+      </div>
+    </div>
+    <div class="tip-box">馅料不要放太多，约一茶匙即可，边缘留出约 1cm 的封口空间。捏紧边缘防止煮时破皮。</div>
+  </section>
+
+  <!-- Step 6: Cooking -->
+  <section class="step-section" id="cook">
+    <span class="step-badge">步骤 6</span>
+    <h2>煮饺子</h2>
+    <p>煮饺子讲究"三滚三点水"，这样饺子皮熟而不烂、馅料充分熟透。</p>
+    <ol class="steps-list">
+      <li>锅中加足量冷水，大火烧开后加少许盐（防止粘连）。</li>
+      <li>水开后下饺子，用木铲轻轻推动防止粘底。</li>
+      <li>水再次沸腾后，加入半碗冷水（"点水"），重复 3 次。</li>
+      <li>第三次点水后水再次沸腾，饺子浮起且鼓起即可捞出。</li>
+    </ol>
+    <div class="tip-box">全程保持中大火，"三点水"是防止皮破的关键。捞出后可淋少许芝麻油防粘。</div>
+  </section>
+
+  <!-- Step 7: Sauce -->
+  <section class="step-section" id="sauce">
+    <span class="step-badge">步骤 7</span>
+    <h2>蘸料调配</h2>
+    <p>一碗好蘸料能让饺子更加美味，以下是经典配方：</p>
+    <ol class="steps-list">
+      <li><strong>基础款：</strong>生抽 2 汤匙 + 米醋 1 汤匙 + 少许辣椒油，简单直接。</li>
+      <li><strong>蒜香款：</strong>在基础款中加入 2 瓣蒜末，香气更浓郁。</li>
+      <li><strong>芝麻款：</strong>生抽 + 醋 + 芝麻酱 1 茶匙 + 少许糖，口感醇厚。</li>
+    </ol>
+    <div class="tip-box">醋的比例可按个人喜好调整。北方人偏爱生抽多醋少，南方人则喜欢多醋少辣。</div>
+  </section>
+</main>
+
+<script>
+  // Sidebar toggle (mobile)
+  function toggleSidebar() {
+    document.getElementById('sidebar').classList.toggle('open');
+  }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('.step-section');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const id = entry.target.getAttribute('id');
+        const link = document.querySelector(`nav a[href="#${id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(s => observer.observe(s));
+
+  // Smooth scroll
+  navLinks.forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById('sidebar').classList.remove('open');
+    });
+  });
+</script>
+</body>
+</html>
